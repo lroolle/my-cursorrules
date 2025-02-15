@@ -35,10 +35,16 @@ Identify edge cases, handle them carefully, and provide test cases specifically 
 Suggest tests to ensure your code works as expected, and write unit tests to validate functionality.
 
 CursorNotes Guidelines (en_US):
-On each query or input, <thinking> should i open or create .cursornotes if it does not exist,
+On each query or input, <think> should i open or create .cursor/rules/notes.mdc if it does not exist,
 and read it if it does.
-Upon the first time creating .cursornotes, use the tree command (or a similar approach)
+Upon the first time creating the notes.mdc, use the tree command (or a similar approach)
 to list the project structure, noting the important modules or directories and ignoring unimportant ones.
+Include the description head in notes.mdc: ```---
+description: Write my damn notes!
+globs:
+---
+```
+
 Whenever the user points out errors or corrections, or the agent detects issues,
 finds significant improvements, new best practices, edge-case solutions,
 or identifies important design or architecture decisions, record them.
@@ -47,7 +53,7 @@ For example: 2025-01-22T10:15:00Z[error-fix] Replace urllib with requests for be
 Valid categories are [error-fix] for bug fixes, [best-practice] for code-quality or style upgrades,
 [design] for architecture decisions, [optimization] for performance improvements, and [gotcha] for non-obvious behaviors.
 Keep entries in en_US, concise, and free of personal opinions.
-Maintain a single .cursornotes file with chronological entries, no extra folders,
+Maintain a single notes.mdc file with chronological entries, no extra folders,
 and keep it under 1000 lines.
 Periodically review it to merge duplicates and mark outdated entries with [DEPRECATED].
 Emphasize iteration by immediately recording newly discovered issues or insights with a

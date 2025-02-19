@@ -32,21 +32,61 @@ Handle exceptions and errors gracefully, and do not let your code crash without
 providing meaningful error messages.
 Identify edge cases, handle them carefully, and provide test cases specifically for them.
 Suggest tests to ensure your code works as expected, and write unit tests to validate functionality.
+Whenever we discover a best practice or pattern, we store it in .cursor/rules as .mdc files.
+We'll gradually build a library of Cursor rules that can be reused.
 </general_guidelines>
 
-<taking_notes_guidelines>
-On each query or input, <think> should i open or create .cursor/rules/notes.mdc if it does not exist, and read it if it does.
-Upon the first time creating the notes.mdc, use the tree command (or a similar approach) to list the project structure, noting the important modules or directories and ignoring unimportant ones.
-Always include the following file head in notes.mdc:
-file head: ```---
+<write_my_damn_notes>
+On each query or input, <think/>... should I open or create .cursor/rules/notes.mdc if it does not exist, and read it if it does.
+Upon the first time creating notes.mdc, use something like the tree command to note the project's important modules or directories, ignoring unimportant ones.
+Always include:
+---
 description: Write my damn notes!
-globs:
----```
-Whenever the user points out errors or corrections, or the agent detects issues, finds significant improvements, new best practices, edge-case solutions, or identifies important design or architecture decisions, record them.
-Use the format [category] Brief note (<120 chars), for example: [error-fix] Replace urllib with requests for better HTTP handling.
-Valid categories are [error-fix] for bug fixes, [best-practice] for code-quality or style upgrades, [design] for architecture decisions, [optimization] for performance improvements, and [gotcha] for non-obvious behaviors.
-Keep entries in en_US, concise, and free of personal opinions.
-Maintain a single notes.mdc file with chronological entries, no extra folders, and keep it under 1000 lines.
-Periodically review it to merge duplicates and mark outdated entries with [DEPRECATED].
-Emphasize iteration by immediately recording newly discovered issues or insights after each completed task or user query.
-</taking_notes_guidelines>
+globs: *
+---
+at the top of any .cursor/rules/<filename>.mdc file.
+Whenever the user points out errors or corrections, or the agent detects new insights, best practices,
+edge-case solutions, or design decisions, record them using:
+[category] Brief note (<120 chars)
+Categories:
+  [error-fix], [best-practice], [design], [optimization], [gotcha], [typing]
+Write notes in concise en_US. Mark duplicates as [DEPRECATED].
+Append new notes promptly after each completed task iteration.
+</write_my_damn_notes>
+
+<init>
+Please initialize our environment:
+1. Create .cursor/rules/ if it doesn't exist.
+2. Prepare .cursor/rules/notes.mdc with the required file head.
+3. List repo structure (concise layout):
+.
+├── .cursor
+│   └── rules
+│       └── (rule files, e.g. notes.mdc)
+├── src
+│   └── (source code modules) # key explanation
+├── tests
+│   └── (unit tests)
+└── README.md
+4. List repo key tools, libs, key frameworks, key references, main goals.
+5. Essential Behavior:
+- Write my damn notes by creating or updating .cursor/rules/notes.mdc on each new insight or fix.
+- Strictly enforce placing all Cursor rules in .cursor/rules/*.mdc.
+- Keep code merges or commits consistent with best practices.
+6. Each time new lessons or fixes are discovered, create or update .cursor/rules/*.mdc with them.
+Done.
+</init>
+
+<gtd_workflow>
+1. .cursor/rules/WIP.mdc: for noting what we're working currently;
+---
+description: WIP
+globs: *
+---
+2. after git commit / task done, move the WIP entries to .cursor/rules/DONE.mdc: for tracking what we've DONE, example:
+---
+description: DONE
+globs: *
+---
+- [X] feat(web): implement chat-ui
+</gtd_workflow>
